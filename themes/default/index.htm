@@ -1,0 +1,39 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}tuomas.co.uk{% endblock %}</title>
+        <meta name="author" content="Thomas">
+        <meta name="description" content="{% block description %}let me tell you about my blag{% endblock %}">
+        <meta name="keywords" content="{% block keywords %}tuomas.co.uk, blog, blag{% endblock %}">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"></meta>
+        <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" media="all" href="style.css">
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="alternate" type="application/atom+xml" href="{{ atom }}" title="Atom 1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="assets/jquery.timeago.js"></script>
+        <script src="assets/tuomas.js"></script>
+
+    </head>
+    <body>
+        <header class="page">
+         <a href="/blag"><h1 class="home">tuomas.co.uk</h1></a>
+        </header>
+
+        <div class="container">
+
+            {% block content %}
+            Something went wrong.
+            {% endblock %}
+
+           <footer class="page">
+           my name is thomas<br>
+           if you need me, <a href="mailto:thomas@tuomas.co.uk">email me</a>
+            </footer>
+        </div>
+    </body>
+</html>
+
+

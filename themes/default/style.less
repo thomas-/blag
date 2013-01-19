@@ -1,0 +1,129 @@
+/* 
+ * tuomas.co.uk
+ */
+
+@import "reset";
+@import "code";
+
+@black: rgb(0,0,0);
+@bg: rgb(245,245,245);
+@sidebar: 250px;
+@padding: 50px;
+@content: 650px;
+
+html {
+    background-color: @bg;
+}
+
+body {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    word-spacing: 2px;
+}
+
+p {
+    margin: 30px 0px 30px 0px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+header.page {
+    left: 0px;
+    float: left;
+    margin: 0px 10px;
+    font-size: 30px;
+    font-family: sans-serif;
+    width: @sidebar;
+    h1 {
+        margin-top: 0px;
+        width: @sidebar;
+        height: 250px;
+        background: url("assets/logo.png");
+        opacity: 0.5;
+        text-indent: -9999px;
+    }
+}
+
+div.container {
+    width: @content;
+    color: darken(@bg,90%);
+    font: normal 24px/32px "Georgia", serif;
+    margin: 0px (@sidebar+@padding);
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: darken(@bg, 25%);
+    &:hover {
+        color: darken(@bg,100%);
+    }
+}
+
+
+article {
+    margin-bottom: 50px;
+    p {
+        text-align: left;
+    }
+    header {
+        font-family: sans-serif;
+        margin-bottom: 15px;
+        .title {
+            a {
+                &:hover {
+                    color: darken(@bg, 25%);
+                }                
+                text-decoration: none;
+                color: darken(@bg,80%);
+            }
+            font-size: 50px;
+            line-height: 56px;
+            margin-bottom: 10px;
+        }
+        .meta {
+            font-style: italic;
+            color: darken(@bg,50%);
+        }
+        .tags a:hover {
+            color: darken(@bg,90%);
+        }
+    }
+}
+
+.comment {
+    margin: 30px 0px 30px 0px;
+    .meta {
+        display: block;
+        font-family: sans-serif;
+    }
+    .content {
+    }
+}
+
+footer.page {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid darken(@bg,20%);
+    color: darken(@bg,40%);
+    text-align: right;
+    font-family: sans-serif;
+}
+
+@media (max-width: 850px) {
+    body {
+        margin: 10px;
+    }
+    header.page {
+        display: inline-block;
+        width: 100%;
+        margin-bottom:30px;
+    }
+    div.container {
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+    }
+}
+

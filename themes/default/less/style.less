@@ -1,0 +1,65 @@
+/* 
+ * tuomas.co.uk
+ */
+
+@black: rgb(0,0,0);
+@bg: rgb(245,245,245);
+@sidebar: 250px;
+@padding: 25px;
+@content: 650px;
+
+html {
+    background-color: @bg;
+}
+
+body {
+    margin-top: 80px;
+}
+
+header.page {
+    left: 0px;
+    position: fixed;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-size: 30px;
+    font-family: sans-serif;
+    width: @sidebar;
+    h1 {
+        margin-top: 0px;
+        width: @sidebar;
+        height: 250px;
+        background: url("tuomas-250.png");
+        text-indent: -9999px;
+    }
+}
+
+div.container {
+    width: @content;
+    color: darken(@bg,90%);
+    font: normal 24px/32px "Georgia", serif;
+    margin: 0px (@sidebar+@padding);
+}
+
+article {
+    text-align: justify;
+    header {
+        font-family: sans-serif;
+        .title {
+            font-size: 50px;
+        }
+        .meta {
+            font-style: italic;
+        }
+        .tags {
+            color: darken(@bg,50%);
+        }
+    }
+}
+
+footer.page {
+    margin-top: 50px;
+    text-align: right;
+    font-family: sans-serif;
+}
+
+

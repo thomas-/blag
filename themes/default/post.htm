@@ -1,0 +1,50 @@
+{% extends "index.htm" %}
+
+{% if title is defined %}
+{% block title %}{{ title }}{% endblock %}
+{% endif %}
+{% if description is defined %}
+{% block description %}{{ description }}{% endblock %}
+{% endif %}
+{% if keywords is defined %}
+{% block keywords %}{{ keywords }}{% endblock %}
+{% endif %}
+
+{% block content %}
+            <article>
+                <header>
+                <h1 class="title"><a href="{{ slug }}">{{ title }}</a></h1>
+                {% if not page %}
+                <p class="meta"><abbr class="timeago" title="{{ time }}">{{ date }}</abbr> in <span class="tags">
+                {% endif %}
+                    {% for tag in tags %}
+                    <a href="tag-{{ tag|replace(" ","-")|lower }}">{{ tag }}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </span>{% if comments is defined %}({{ comments|length }} comments){% endif %}</p>
+
+                </header>
+
+                {{ content }}
+
+            </article>
+
+            {% if comments is defined %}
+            <h3>{{ comments|length}} Comments</h3>
+            {% for c in comments %}
+            <div class="comment">
+                <span class="meta">by {{ c.name }}:</span>
+                <span class="content">{{ c.content }}</span>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <h3>Post a Reply</h3>
+            <form action="comments.php" method="post">
+                <input type="hidden" name="slug" value="{{ slug }}">
+                Name: <input type="text" name="name"><br>
+                Comment: <br>
+                <textarea name="comment" rows="8" columns="60"></textarea>
+                <input type="submit" value="Post Reply">
+            </form>
+
+{% endblock %}
