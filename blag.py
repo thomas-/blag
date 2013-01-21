@@ -9,7 +9,6 @@ import os
 import markdown
 import argparse
 import datetime
-import curses
 import json
 import glob
 from distutils import dir_util
