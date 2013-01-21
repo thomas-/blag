@@ -180,6 +180,8 @@ def what_do():
 
     if 'build' in cmd:
         build()
+    elif 'deploy' in cmd:
+        deploy()
     elif 'new' in cmd:
         new_post(args['args'][0],loc_posts)
     elif 'edit' in cmd:
@@ -204,6 +206,9 @@ class COLOR:
 def path_from_slug(slug):
     return glob.glob(os.path.join(root,loc_posts,"*_"+slug))[0]
     
+def deploy():
+    call(["deploy.sh"])
+
 def build():
 
     if not os.path.exists(output):
