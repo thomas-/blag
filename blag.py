@@ -22,10 +22,10 @@ EDITOR = os.environ.get('EDITOR', 'vim')
 root = os.path.dirname(os.path.realpath(__file__))
 output = os.path.join("public")
 loc_posts = "posts"
-theme = "default"
+theme = "t1"
+ 
 env = Environment(loader=FileSystemLoader(
         os.path.join(root,"themes",theme)))
- 
 
 def get_path(x):
     return os.path.dirname(os.path.realpath(x))
@@ -205,6 +205,7 @@ def path_from_slug(slug):
     return glob.glob(os.path.join(root,loc_posts,"*_"+slug))[0]
     
 def build():
+
     if not os.path.exists(output):
         os.makedirs(output)
 
