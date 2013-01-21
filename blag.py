@@ -6,16 +6,18 @@
 
 import sys
 import os
+import time
 import markdown
 import argparse
 import datetime
-import json
 import glob
 from distutils import dir_util
 from subprocess import call
 from jinja2 import Template, Environment, FileSystemLoader
 
 TIME_START = datetime.datetime.now()
+
+EDITOR = os.environ.get('EDITOR', 'vim')
 
 root = os.path.dirname(os.path.realpath(__file__))
 output = os.path.join("public")
@@ -125,6 +127,42 @@ def design(theme,out):
             os.path.join('themes',theme,'assets'),
             os.path.join(out,'assets'))
 
+def new_post(slug,path):
+    if glob.glob(os.path.join(root,path,"*_"+slug+".md")):
+        log("Post with slug "+slug+" already exists.")
+    else:
+        filepath = os.path.join(root,path,
+                time.strftime("%Y%m%d")+"_"+slug+".md")
+        with open(filepath,"w") as f:
+            f.write("title: \ntags: \nkeywords: \ndescription: \n--- \n\nContent \n")
+            f.close()
+            call([EDITOR, filepath])
+            log("New Post: "+filepath)
+
+def delete_post(slug,path):
+    matches = glob.glob(os.path.join(root,path,"*"+slug+"*.md"))
+    if len(matches) is 0:
+        log("No posts found matching string")
+        return
+    for p in matches:
+        print "Are you sure you want to delete "+p+"? [y/N]"
+        x = raw_input()
+        if x is 'Y' or x is 'y':
+            try: os.remove(p)
+            except IOError, e: 
+                log(e)
+                continue
+            print "Deleted "+p
+
+def edit_post(slug,path):
+    matches = glob.glob(os.path.join(root,path,"*"+slug+"*.md"))
+    if len(matches) is 1:
+        call([EDITOR, matches[0]])
+    elif len(matches) > 1:
+        log("Too many matches, be more specific:")
+        print matches
+    elif len(matches) is 0:
+        log("No post found matching that string")
 
 def log(s):
     print s
@@ -142,6 +180,12 @@ def what_do():
 
     if 'build' in cmd:
         build()
+    elif 'new' in cmd:
+        new_post(args['args'][0],loc_posts)
+    elif 'edit' in cmd:
+        edit_post(args['args'][0],loc_posts)
+    elif 'delete' in cmd:
+        delete_post(args['args'][0],loc_posts)
     elif 'help' in cmd:
         log("help!")
     else:
