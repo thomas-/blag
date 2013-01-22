@@ -7,6 +7,7 @@
 import sys
 import os
 import time
+import ConfigParser
 import markdown
 import argparse
 import datetime
