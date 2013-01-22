@@ -11,6 +11,8 @@
 @padding: 50px;
 @content: 650px;
 
+@font: 24px;
+
 html {
     background-color: @bg;
 }
@@ -49,7 +51,7 @@ header.page {
 div.container {
     width: @content;
     color: darken(@bg,90%);
-    font: normal 24px/32px "Georgia", serif;
+    font: normal 24px/36px "Georgia", serif;
     margin: 0px (@sidebar+@padding);
 }
 
@@ -109,6 +111,14 @@ footer.page {
     color: darken(@bg,40%);
     text-align: right;
     font-family: sans-serif;
+}
+
+blockquote {
+    margin: 20px 20px 20px 20px;
+    padding: 10px 10px 10px 10px;
+    background-color: lighten(@bg,100%);
+    font-family: sans-serif;
+    font-size: (@font*0.8);
 }
 
 @media (max-width: 850px) {

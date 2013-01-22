@@ -39,6 +39,7 @@ def scan_posts(dir):
             paths.append(os.path.join(root,dir,item))
         except StandardError, e:
             log(e)
+    paths = sorted([t for t in paths],reverse=True)
     return paths
 
 def md(text):
@@ -64,7 +65,7 @@ def get_post_data(paths):
     for path in paths:
         p = os.path.basename(path).split("_")
         try:
-            posts.append({'slug': p[1],
+            posts.append({'slug': p[1].rsplit('.m',1)[0],
                 'path': path,
                 'date': p[0]})
         except StandardError:
@@ -100,7 +101,6 @@ def generate_index(posts,out):
     f = open(path, 'w')
     f.write(template.render(data))
     f.close()
-#   print template.render(data)
 
 def generate_tags(posts,out):
     tags = {}
